@@ -3,8 +3,10 @@ package de.davidemarcoli.dbdemo.Transaction;
 import de.davidemarcoli.dbdemo.Person.PersonServiceImpl;
 import de.davidemarcoli.dbdemo.jpa.Person;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.Lock;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.LockModeType;
 import javax.transaction.Transactional;
 
 @Service
@@ -16,6 +18,7 @@ public class TransactionServiceImpl implements TransactionService{
 
     @Override
     @Transactional
+    @Lock(LockModeType.PESSIMISTIC_READ)
     public void makeTransaction(Transaction transaction) {
         Person personFrom = personService.getById(transaction.getFromId());
         Person personTo = personService.getById(transaction.getToId());
