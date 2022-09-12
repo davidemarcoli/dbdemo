@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class DataLoader implements ApplicationRunner {
 
-    private PersonRepository personRepository;
+    private final PersonRepository personRepository;
 
     public void run(ApplicationArguments args) {
         if (personRepository.findAll().isEmpty()) {
