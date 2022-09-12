@@ -14,4 +14,7 @@ public interface PersonRepository extends JpaRepository<Person, Integer> {
     @Query("SELECT p FROM Person p WHERE p.money > 10000")
     List<Person> findAllRichPeople();
 
+    List<Person> findByMoneyGreaterThanEqual(double money);
+
+
 }
